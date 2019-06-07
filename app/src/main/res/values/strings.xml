@@ -11,4 +11,6 @@
     <string name="last_name">Last Name</string>
     <string name="mobile_phone">Mobile Phone</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="already_registered">Already Registered?</string>
 </resources>
