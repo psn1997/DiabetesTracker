@@ -31,6 +31,10 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null){
+            finish();
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+        }
         progressDialog = new ProgressDialog(this);
         reg_email = (EditText) findViewById(R.id.reg_email);
         reg_password = (EditText) findViewById(R.id.reg_password);
@@ -71,8 +75,11 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
                         if(task.isSuccessful()){
                             Toast.makeText(SignUpActivity.this,"Registration Complete", Toast.LENGTH_SHORT).show();
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         }
                         else{
                             Toast.makeText(SignUpActivity.this,"Could not register", Toast.LENGTH_SHORT).show();
